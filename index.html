@@ -300,7 +300,7 @@ function renderPantry() {
   const loc = document.getElementById('pantry-loc').value;
   const items = quickAddItems[loc]||[];
   document.getElementById('quick-add-btns').innerHTML = items.map(i=>
-    `<button onclick="addPantryItem('${i}','${loc}')" class="text-xs px-2 py-1 rounded-full bg-brand-100 text-brand-700 hover:bg-brand-200">${i}</button>`
+    `<button onclick="prefillPantryItem('${i}')" class="text-xs px-2 py-1 rounded-full bg-brand-100 text-brand-700 hover:bg-brand-200">${i}</button>`
   ).join('');
   // Pantry list
   let html = '';
@@ -334,6 +334,10 @@ function addPantryCustom() {
   const unit = document.getElementById('pantry-unit').value;
   addPantryItem(name, document.getElementById('pantry-loc').value, qty, unit);
   inp.value=''; document.getElementById('pantry-qty').value=''; document.getElementById('pantry-unit').value='';
+}
+function prefillPantryItem(name) {
+  document.getElementById('pantry-input').value = name;
+  document.getElementById('pantry-qty').focus();
 }
 function editPantryQty(id) {
   const item = pantry.find(p=>p.id===id);
